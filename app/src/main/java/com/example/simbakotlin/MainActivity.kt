@@ -46,12 +46,12 @@ class MainActivity : AppCompatActivity() {
      */
     private fun first(){
         var publication:Publication = Magazine(100, 1000)
-        println("Magazine: кол-во строк = ${publication.wordCount}, цена в евро = ${publication.price}, type = ${publication.getType()}")
+        println("Magazine: кол-во строк = ${publication.wordCount}, цена в евро = ${covertRubleToEuro(publication.price)}, type = ${publication.getType()}")
 
         val equalFirst = publication == Magazine(100, 1000)
 
         publication = Book(100, 1000)
-        println("Book: кол-во строк = ${publication.wordCount}, цена в евро = ${publication.price}, type = ${publication.getType()}")
+        println("Book: кол-во строк = ${publication.wordCount}, цена в евро = ${covertRubleToEuro(publication.price)}, type = ${publication.getType()}")
 
         val equalSecond = publication == Book(100, 1000)
 
@@ -67,7 +67,10 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun convertPriceToEuro(price: Long): String = String.format("%02d.%02d", price%10, price/10)
+    private fun covertRubleToEuro(price: Int): Double {
+        val courseEuro = 76.64
+        return price / courseEuro
+    }
 
     private fun log(message:String){
         Log.d("MainLog", message)
